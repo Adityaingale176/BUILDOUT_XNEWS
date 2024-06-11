@@ -9,6 +9,7 @@ public class NewsApiResponse {
     private List<NewsArticle> articles = new ArrayList<>();
 
 // TODO: CRIO_TASK_MODULE_PROJECT
-// Please define all the methods required here as mentioned in the XNews BuildOut Milestone for each functionality before implementing the logic.
-// This will ensure that the project can be compiled successfully.
+// Use your IDE to generate getters and setters for the variables declared above.
+// Use your IDE to generate the toString method to provide a string representation of the variables in the NewsAPIResponse class.
+
 }
