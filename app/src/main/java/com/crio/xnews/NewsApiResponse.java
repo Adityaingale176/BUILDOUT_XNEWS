@@ -10,6 +10,6 @@ public class NewsApiResponse {
 
 // TODO: CRIO_TASK_MODULE_PROJECT
 // Use your IDE to generate getters and setters for the variables declared above.
-// Use your IDE to generate the toString method to provide a string representation of the variables in the NewsAPIResponse class.
+// Use your IDE to generate the toString method to provide a string representation of the variables.
 
 }
