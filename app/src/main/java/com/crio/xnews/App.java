@@ -3,11 +3,9 @@
  */
 package com.crio.xnews;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
- import java.util.Collections;
+import java.util.Collections;
 
 public class App {
     public String getGreeting() {
