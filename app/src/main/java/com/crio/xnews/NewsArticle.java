@@ -14,7 +14,14 @@ public class NewsArticle {
     String url;
     String publishedAt;
     String content;
+    String Description;
 
+    public void setDescription(String description) {
+        Description = description;
+    }
+    public String getDescription() {
+        return Description;
+    }
     public String getTitle() {
         return title;
     }
