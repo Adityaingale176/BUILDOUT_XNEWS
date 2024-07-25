@@ -8,8 +8,33 @@ public class NewsApiResponse {
     private int totalResults;
     private List<NewsArticle> articles = new ArrayList<>();
 
-// TODO: CRIO_TASK_MODULE_PROJECT
-// Use your IDE to generate getters and setters for the variables declared above.
-// Use your IDE to generate the toString method to provide a string representation of the variables.
+    
+    // TODO: CRIO_TASK_MODULE_PROJECT
+    // Use your IDE to generate getters and setters for the variables declared above.
+    // Use your IDE to generate the toString method to provide a string representation of the variables.
+        
+    public String getStatus() {
+        return status;
+    }
+    public int getTotalResults() {
+        return totalResults;
+    }
+    public List<NewsArticle> getArticles() {
+        return articles;
+    }
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    public void setTotalResults(int totalResults) {
+        this.totalResults = totalResults;
+    }
+    public void setArticles(List<NewsArticle> articles) {
+        this.articles = articles;
+    }
+    @Override
+    public String toString() {
+        return "NewsApiResponse [articles=" + articles + ", status=" + status + ", totalResults="
+                + totalResults + "]";
+    }
 
 }

@@ -7,5 +7,50 @@ package com.crio.xnews;
 
 public class UserPreference {
 
+    String name;
+
+    String query;
+
+    String language;
+
+    String sortBy;
+
+    public String getName() {
+        return name;
+    }
+
+    public String getQuery() {
+        return query;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public String getSortBy() {
+        return sortBy;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setQuery(String query) {
+        this.query = query;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    public void setSortBy(String sortBy) {
+        this.sortBy = sortBy;
+    }
+
+    @Override
+    public String toString() {
+        return "UserPreference [language=" + language + ", name=" + name + ", query=" + query
+                + ", sortBy=" + sortBy + "]";
+    }
 
 }

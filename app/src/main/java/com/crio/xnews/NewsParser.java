@@ -2,8 +2,9 @@ package com.crio.xnews;
 
 import java.io.IOException;
 import java.util.List;
- import java.util.Collections;
-
+import java.util.Arrays;
+import java.util.Collections;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class NewsParser {
@@ -15,6 +16,11 @@ public class NewsParser {
 
     public static List<NewsArticle> parse(String json) throws IOException {
 
-        return Collections.emptyList();
+        
+        // Parse the JSON string into a NewsApiResponse object
+        NewsApiResponse response = objectMapper.readValue(json, NewsApiResponse.class);
+    
+        // Return the list of articles or an empty list if null
+        return response.getArticles() != null ? response.getArticles() : Collections.emptyList();
     }
 }

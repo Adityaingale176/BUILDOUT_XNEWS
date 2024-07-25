@@ -1,5 +1,8 @@
 package com.crio.xnews;
 
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import java.io.IOException;
 import java.util.List;
 import java.util.Collections;
@@ -7,7 +10,7 @@ import java.util.Collections;
 public class NewsApiClient {
 
     private static final String API_URL = "https://newsapi.org/v2/everything";
-    private static final String API_KEY = "<_YOUR_API_KEY_>";
+    private static final String API_KEY = "02d87f7437cc49a5b1de92b5ca8509d2";
 
 // TODO: CRIO_TASK_MODULE_PROJECT
 // Utilize the Okhttp3 library to send a request to the News API, including the provided query, language, and sortBy parameters.
@@ -18,7 +21,21 @@ public class NewsApiClient {
 
     public List<NewsArticle> fetchNewsArticles(String query, String language, String sortBy) throws IOException {
 
-        return Collections.emptyList();
+        if (query == null || query.trim().isEmpty() || query == "") {
+            throw new IllegalArgumentException("Query parameter must not be empty");
+        }
+        String url = buildUrl(query, language, sortBy);
+
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder().url(url).build();
+
+        try (Response response = client.newCall(request).execute()) {
+            if (!response.isSuccessful()) {
+                throw new IOException("Unexpected code " + response);
+            }
+            String jsonResponse = response.body().string();
+            return NewsParser.parse(jsonResponse);
+        }
     }
 
 // TODO: CRIO_TASK_MODULE_PROJECT
@@ -30,6 +47,18 @@ public class NewsApiClient {
 
     private String buildUrl(String query, String language, String sortBy) {
 
-      return "";
+        StringBuilder urlBuilder = new StringBuilder(API_URL);
+        urlBuilder.append("?q=").append(query);
+        urlBuilder.append("&apiKey=").append(API_KEY);
+
+        // Add optional parameters if they are provided
+        if (language != null && !language.trim().isEmpty()) {
+            urlBuilder.append("&language=").append(language);
+        }
+        if (sortBy != null && !sortBy.trim().isEmpty()) {
+            urlBuilder.append("&sortBy=").append(sortBy);
+        }
+
+        return urlBuilder.toString();
     }
 }

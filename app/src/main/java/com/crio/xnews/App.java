@@ -3,8 +3,11 @@
  */
 package com.crio.xnews;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Collections;
 
 public class App {
@@ -29,23 +32,22 @@ public class App {
             List<UserPreference> userPreferences = readUserPreferences(filePath);
             userPreferences.forEach(System.out::println);
 
-        //    NewsApiClient newsApiClient = new NewsApiClient();
-        //    for (UserPreference userPreference : userPreferences) {
-        //        String query = userPreference.getName();
-        //        String language = userPreference.getLanguage();
-        //        String sortBy = userPreference.getSortBy();
-        //        List<NewsArticle> articles = newsApiClient.fetchNewsArticles(query, language, sortBy);
-        //         System.out.println("News for " + query + ":");
-        //         System.out.println(articles.size());
-        //         // for (NewsArticle article : articles) {
-        //         //     System.out.println(article);
-        //         //     System.out.println("----------");
-        //         // }
-        // }
+           NewsApiClient newsApiClient = new NewsApiClient();
+           for (UserPreference userPreference : userPreferences) {
+               String query = userPreference.getName();
+               String language = userPreference.getLanguage();
+               String sortBy = userPreference.getSortBy();
+               List<NewsArticle> articles = newsApiClient.fetchNewsArticles(query, language, sortBy);
+                System.out.println("News for " + query + ":");
+                System.out.println(articles.size());
+                for (NewsArticle article : articles) {
+                    System.out.println(article);
+                    System.out.println("----------");
+                }
+        }
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
 // TODO: CRIO_TASK_MODULE_PROJECT
@@ -55,6 +57,12 @@ public class App {
 
     public static List<UserPreference> readUserPreferences(String filePath) throws IOException {
 
-        return Collections.emptyList();
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        File file = new File(filePath);
+
+        List<UserPreference> userPreferences = objectMapper.readValue(file, new TypeReference<List<UserPreference>>() {});
+
+        return userPreferences;
     }
 }
