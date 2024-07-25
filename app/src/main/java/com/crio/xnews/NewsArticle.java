@@ -45,6 +45,7 @@ public class NewsArticle {
     public void setContent(String content) {
         this.content = content;
     }
+   
     @Override
     public String toString() {
         return "NewsArticle [author=" + author + ", content=" + content + ", publishedAt="
